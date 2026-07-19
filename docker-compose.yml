@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgres://work:work@db:5432/work
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app
+
+  db:
+    image: docker.io/library/postgres:16
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: work
+      POSTGRES_PASSWORD: work
+      POSTGRES_DB: work
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U work -d work']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - app
+
+volumes:
+  postgres_data:
+
+networks:
+  app:

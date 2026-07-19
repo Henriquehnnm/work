@@ -1,0 +1,23 @@
+// use prisma-next
+// use PostgreSQL
+
+model works {
+  id                  String @id @default(uuid())
+  title               String
+  link                String @unique
+  description_summary String?
+  budget              String?
+  hourly_rate         String?
+  proposal_count      Int
+  skills              String[]
+  published_at        DateTime
+  status              String
+}
+
+model settings {
+  id                 String @id @default(uuid())
+  keywords           String[]
+  blacklist_keywords String[]
+  min_budget         String
+  max_proposal_count Int
+}

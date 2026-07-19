@@ -1,0 +1,29 @@
+{
+  "name": "work",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "contract:emit": "prisma-next contract emit",
+    "docker:build": "podman-compose build",
+    "docker:up": "podman-compose up -d",
+    "docker:down": "podman-compose down",
+    "docker:logs": "podman-compose logs -f",
+    "docker:dev": "podman-compose up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.4",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "prisma-next": "^0.15.0"
+  },
+  "dependencies": {
+    "@prisma-next/postgres": "^0.15.0",
+    "dotenv": "^17.4.2",
+    "elysia": "^1.4.29"
+  }
+}
